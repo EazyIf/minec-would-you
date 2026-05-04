@@ -63,15 +63,18 @@ high. Unrecognized text is safely ignored.
 
 Requires JDK 21 and an internet connection for the first Gradle run.
 
+**Linux / macOS:**
 ```bash
 ./gradlew build
 ```
 
-The resulting jar is in `build/libs/wouldyou-1.0.0.jar`.
+**Windows (cmd or PowerShell):**
+```bat
+gradlew.bat build
+```
 
-> No Gradle wrapper jar is checked in to keep the repo clean. Use a system
-> Gradle (≥ 8.7), or run `gradle wrapper --gradle-version 8.7` once to
-> generate the wrapper, then use `./gradlew` for subsequent builds.
+The Gradle wrapper is checked into the repo, so no separate Gradle install is
+needed. The resulting jar is in `build/libs/wouldyou-1.0.0.jar`.
 
 ### 2. Install
 
