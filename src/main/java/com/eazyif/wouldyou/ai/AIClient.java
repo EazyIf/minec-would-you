@@ -19,19 +19,29 @@ import java.util.concurrent.CompletableFuture;
 public final class AIClient {
 
     private static final String SYSTEM_PROMPT =
-            "You generate creative Minecraft 'Would You Rather' dilemmas. "
-          + "Each option must include both a positive and a negative gameplay effect. "
-          + "Use simple effect keywords the game can map: speed, jump boost, night vision, "
-          + "regeneration, strength, resistance, slowness, weakness, hunger, blindness, poison, "
-          + "fire resistance, water breathing, glowing, levitation, mining fatigue; "
-          + "or rewards/penalties: diamonds, emeralds, gold, iron, food (cooked beef), arrows, "
-          + "spawn creepers, spawn zombies, spawn skeletons, lightning, less health, more health, set on fire. "
-          + "Reply ONLY with compact JSON: "
-          + "{\"question\":\"...\",\"optionA\":{\"text\":\"...\"},\"optionB\":{\"text\":\"...\"}}.";
+            "You generate grounded, realistic Minecraft 'Would You Rather' dilemmas that feel "
+          + "like situations a survival player might actually face. Both options must be "
+          + "balanced: a modest positive paired with a modest negative — never overpowered, "
+          + "never game-ruining. Use vanilla-feeling effect strengths (think potion-tier, not "
+          + "godmode). Keep item counts small and believable (1-8 of any item). Mob spawns "
+          + "should be 1-3 and survivable. Avoid silly, surreal, meta, or joke scenarios. "
+          + "Phrase options plainly, like a player describing a mod's effect (e.g. "
+          + "'Gain Speed II for 5 minutes but suffer Mining Fatigue', "
+          + "'Receive 3 diamonds but spawn 1 zombie nearby'). "
+          + "Use ONLY these effect keywords so the game can map them: speed, jump boost, "
+          + "night vision, regeneration, strength, resistance, fire resistance, water breathing, "
+          + "haste, luck, glowing, slowness, weakness, hunger, blindness, poison, mining fatigue, "
+          + "nausea, levitation; rewards/penalties: diamonds, emeralds, gold, iron, arrows, "
+          + "food (cooked beef); spawns: spawn creepers, spawn zombies, spawn skeletons; "
+          + "misc: lightning, set on fire, less health, more health, full heal. "
+          + "Each option's text MUST contain at least one positive keyword and one negative keyword. "
+          + "Reply ONLY with compact JSON, no prose: "
+          + "{\"question\":\"Would you rather...\",\"optionA\":{\"text\":\"...\"},\"optionB\":{\"text\":\"...\"}}.";
 
     private static final String USER_PROMPT =
-            "Generate a creative Minecraft would-you-rather question with exactly 2 options. "
-          + "Each option must include a positive and negative gameplay effect. Return JSON only.";
+            "Generate one realistic, balanced Minecraft would-you-rather question with exactly "
+          + "2 options. Each option needs one small positive and one small negative gameplay effect "
+          + "drawn from the allowed keyword list. Return JSON only.";
 
     private static final HttpClient HTTP = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(15))
@@ -66,7 +76,7 @@ public final class AIClient {
 
         JsonObject body = new JsonObject();
         body.addProperty("model", model);
-        body.addProperty("temperature", 0.9);
+        body.addProperty("temperature", 0.6);
         body.add("messages", JsonParser.parseString(
                 "[{\"role\":\"system\",\"content\":" + quote(SYSTEM_PROMPT) + "},"
               + "{\"role\":\"user\",\"content\":" + quote(USER_PROMPT) + "}]"));
