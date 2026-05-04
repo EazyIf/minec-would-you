@@ -16,7 +16,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.LightningEntity;
+import net.minecraft.entity.LightningEntity;
 
 import java.util.ArrayList;
 import java.util.List;
