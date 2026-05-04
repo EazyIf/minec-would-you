@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "wouldyou",
+  "version": "${version}",
+  "name": "Would You Rather (AI)",
+  "description": "AI-powered Minecraft Would You Rather mod. Every 10 minutes the player is asked a dynamically generated question and the chosen option is applied as a gameplay effect.",
+  "authors": ["EazyIf"],
+  "contact": {
+    "homepage": "https://github.com/eazyif/minec-would-you",
+    "sources": "https://github.com/eazyif/minec-would-you"
+  },
+  "license": "MIT",
+  "icon": "assets/wouldyou/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.eazyif.wouldyou.WouldYouRatherMod"],
+    "client": ["com.eazyif.wouldyou.client.WouldYouRatherClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

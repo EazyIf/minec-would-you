@@ -1,0 +1,7 @@
+{
+  "wouldyou.title": "Would You Rather...",
+  "wouldyou.option_a": "Option A",
+  "wouldyou.option_b": "Option B",
+  "wouldyou.applied": "Effect applied: %s",
+  "wouldyou.fetching": "Generating question..."
+}
